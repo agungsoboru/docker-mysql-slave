@@ -1,0 +1,14 @@
+version: "3"
+services:
+  mysql-slave:
+    image: mysql:8.0
+    container_name: mysql-slave
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: app
+    volumes:
+      - ./slave/my.cnf:/etc/mysql/my.cnf
+      - ./slave/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - 7604:3306
+
